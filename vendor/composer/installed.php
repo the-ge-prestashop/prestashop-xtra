@@ -3,7 +3,7 @@
         'name' => 'the-ge/prestashop-xtra',
         'pretty_version' => 'dev-main',
         'version' => 'dev-main',
-        'reference' => 'd6732c166487b4a5c104f09923e958b75e2f275b',
+        'reference' => 'e98479ee42f2bc5d18a1e6190455a68ae643a68d',
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
@@ -13,7 +13,7 @@
         'the-ge/prestashop-xtra' => array(
             'pretty_version' => 'dev-main',
             'version' => 'dev-main',
-            'reference' => 'd6732c166487b4a5c104f09923e958b75e2f275b',
+            'reference' => 'e98479ee42f2bc5d18a1e6190455a68ae643a68d',
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),

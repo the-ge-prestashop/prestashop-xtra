@@ -22,11 +22,9 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "TheGe\\XtraTest\\PrestaShop\\": "tests/src/"
-    },
-    "classmap": [
-      "tests/mocks/"
-    ]
+      "TheGe\\Test\\Test\\Xtra\\PrestaShop\\": "tests/src/",
+      "TheGe\\Test\\TestDoubles\\Xtra\\PrestaShop\\": "tests/test-doubles/"
+    }
   },
   "config": {
     "preferred-install": "dist",

@@ -11,7 +11,7 @@
  * @license   https://www.apache.org/licenses/LICENSE-2.0 Apache License version 2.0
  */
 
-namespace TheGe\XtraTest\PrestaShop\Module;
+namespace TheGe\Test\Test\Xtra\PrestaShop\Module;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
