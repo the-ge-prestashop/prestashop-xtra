@@ -7,13 +7,6 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'Context' => $baseDir . '/tests/mocks/classes/Context.php',
-    'Controller' => $baseDir . '/tests/mocks/classes/controller/Controller.php',
-    'Db' => $baseDir . '/tests/mocks/classes/db/Db.php',
-    'PrestaShopLogger' => $baseDir . '/tests/mocks/classes/PrestaShopLogger.php',
-    'PrestaShop\\PrestaShop\\Adapter\\SymfonyContainer' => $baseDir . '/tests/mocks/src/Adapter/SymfonyContainer.php',
-    'Smarty' => $baseDir . '/tests/mocks/vendor/Smarty.php',
-    'TheGe\\XtraTest\\PrestaShop\\Module\\ModuleSharedMethodsTest' => $baseDir . '/tests/src/Module/ModuleSharedMethodsTest.php',
     'TheGe\\Xtra\\PrestaShop\\Module\\Exception\\InvalidModuleAssetException' => $baseDir . '/src/Module/Exception/InvalidModuleAssetException.php',
     'TheGe\\Xtra\\PrestaShop\\Module\\ModuleSharedMethods' => $baseDir . '/src/Module/ModuleSharedMethods.php',
 );
