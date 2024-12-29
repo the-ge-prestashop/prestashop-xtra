@@ -13,11 +13,8 @@
 
 namespace TheGe\Xtra\PrestaShop\Module;
 
-use Controller;
-use Db;
-use PrestaShopLogger;
-use PrestaShopModuleException;
-use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
+use TheGe\Xtra\PrestaShop\Module\Exception\InvalidModuleAssetException;
+
 
 trait ModuleSharedMethods
 {
@@ -42,21 +39,26 @@ trait ModuleSharedMethods
         );
     }
 
-    private function getControllerKey(?Controller $controller = null): string
+    private function getControllerKey(?object $controller = null): string
     {
         $controller ??= $this->context->controller;
+        $controller_class = $controller === null ? '' : $controller::class;
 
-        return strtolower(str_replace('Controller', '', $controller::class));
+        return strtolower(str_replace('Controller', '', $controller_class));
     }
 
-    private function getService(string $name): object
+    private function getModuleService(string $name): object
     {
-        return $this->get("{$this->name}.{$name}");
+        return $this
+            ->getContainer()
+            ->get("{$this->name}.{$name}");
     }
 
-    private function getParameter(string $name): mixed
+    private function getModuleParameter(string $name): mixed
     {
-        return SymfonyContainer::getInstance()->getParameter("{$this->name}.{$name}");
+        return $this
+            ->getContainer()
+            ->getParameter("{$this->name}.{$name}");
     }
 
     /**
@@ -74,6 +76,11 @@ trait ModuleSharedMethods
         // Asset URI e.g. '/shop/modules/mymodule/views/css/admin/somefile.css'
         $path = fn(bool $is_modern): string => ($is_modern ? "modules/{$this->name}" : $this->getPathUri()) . "/views/{$extension}/{$uri}";
         $controller = $this->context->controller;
+
+        if ($controller === null) {
+            return;
+        }
+
         /**
          * @param   array $method   [0 => legacy method name, 1 => modern method name]
          * @return  array           [0 => method name, 1 => false if legacy, true if modern] 
@@ -89,15 +96,10 @@ trait ModuleSharedMethods
                 $args = $is_modern ? [$id, $path(true), $options] : [$path(false)];
                 break;
             default:
-                throw new PrestaShopModuleException("Invalid extension for asset: {$uri}");
+                throw new InvalidModuleAssetException("Invalid extension for asset '{$uri}' of module '{$this->name}'");
         };
 
         $controller->$method(...$args);
-    }
-
-    private function query(string $sql): mixed
-    {
-        return ($this->database ?? Db::getInstance())->executeS($sql);
     }
 
     /**
@@ -112,19 +114,23 @@ trait ModuleSharedMethods
      */
     private function renderTemplate(string $template, array $template_vars): string // @phpstan-ignore method.unused
     {
-        $this->context->smarty->assign($template_vars);
+        $smarty = $this->context->smarty;
+
+        if ($smarty === null) {
+            return '';
+        }
+
+        $smarty->assign($template_vars);
 
         return $this->display($this->moduleMainFile, $template);
     }
 
-    private function logException(PrestaShopModuleException $exception, string $context): string
+    private function logException(\Exception $exception, string $context): string
     {
-        $logged = PrestaShopLogger::addLog(
-            "[{$exception->getFile()}:{$exception->getLine()}] {$exception->getMessage()}",
-            3, // error
-            $exception->getCode(),
-            static::class,
-        );
+        $this
+            ->getContainer()
+            ->get('@logger')
+            ->logError("[{$exception->getFile()}:{$exception->getLine()}] {$exception->getMessage()}");
         $message = sprintf($this->trans('There was an error during %s.', [], "Modules.{$this->name}.Admin"), $context);
         $suffix  = $this->trans('Please, ask your developer to consult the logs or contact us through the Addons website.', [], "Modules.{$this->name}.Admin");
 

@@ -6,10 +6,15 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit77a1b81cd4eec355627d10283c6ae37d
 {
+    public static $files = array (
+        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
             'TheGe\\Xtra\\PrestaShop\\' => 22,
+            'TheGe\\XtraTest\\PrestaShop\\' => 26,
         ),
     );
 
@@ -18,10 +23,22 @@ class ComposerStaticInit77a1b81cd4eec355627d10283c6ae37d
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'TheGe\\XtraTest\\PrestaShop\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests/src',
+        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Context' => __DIR__ . '/../..' . '/tests/mocks/classes/Context.php',
+        'Controller' => __DIR__ . '/../..' . '/tests/mocks/classes/controller/Controller.php',
+        'Db' => __DIR__ . '/../..' . '/tests/mocks/classes/db/Db.php',
+        'PrestaShopLogger' => __DIR__ . '/../..' . '/tests/mocks/classes/PrestaShopLogger.php',
+        'PrestaShop\\PrestaShop\\Adapter\\SymfonyContainer' => __DIR__ . '/../..' . '/tests/mocks/src/Adapter/SymfonyContainer.php',
+        'Smarty' => __DIR__ . '/../..' . '/tests/mocks/vendor/Smarty.php',
+        'TheGe\\XtraTest\\PrestaShop\\Module\\ModuleSharedMethodsTest' => __DIR__ . '/../..' . '/tests/src/Module/ModuleSharedMethodsTest.php',
+        'TheGe\\Xtra\\PrestaShop\\Module\\Exception\\InvalidModuleAssetException' => __DIR__ . '/../..' . '/src/Module/Exception/InvalidModuleAssetException.php',
         'TheGe\\Xtra\\PrestaShop\\Module\\ModuleSharedMethods' => __DIR__ . '/../..' . '/src/Module/ModuleSharedMethods.php',
     );
 

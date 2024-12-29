@@ -25,7 +25,7 @@
       "TheGe\\XtraTest\\PrestaShop\\": "tests/src/"
     },
     "classmap": [
-      "tests/mocks/classes/"
+      "tests/mocks/"
     ]
   },
   "config": {

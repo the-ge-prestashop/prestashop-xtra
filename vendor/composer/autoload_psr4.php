@@ -7,4 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'TheGe\\Xtra\\PrestaShop\\' => array($baseDir . '/src'),
+    'TheGe\\XtraTest\\PrestaShop\\' => array($baseDir . '/tests/src'),
 );
