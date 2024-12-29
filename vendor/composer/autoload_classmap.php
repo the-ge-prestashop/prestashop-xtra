@@ -7,5 +7,5 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
-    'TheGe\\PrestaShop\\Xtra\\Module\\ModuleSharedMethods' => $baseDir . '/src/Module/ModuleSharedMethods.php',
+    'TheGe\\Xtra\\PrestaShop\\Module\\ModuleSharedMethods' => $baseDir . '/src/Module/ModuleSharedMethods.php',
 );

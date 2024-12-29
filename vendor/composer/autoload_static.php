@@ -9,12 +9,12 @@ class ComposerStaticInit77a1b81cd4eec355627d10283c6ae37d
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
-            'TheGe\\PrestaShop\\Xtra\\' => 22,
+            'TheGe\\Xtra\\PrestaShop\\' => 22,
         ),
     );
 
     public static $prefixDirsPsr4 = array (
-        'TheGe\\PrestaShop\\Xtra\\' => 
+        'TheGe\\Xtra\\PrestaShop\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
@@ -22,7 +22,7 @@ class ComposerStaticInit77a1b81cd4eec355627d10283c6ae37d
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
-        'TheGe\\PrestaShop\\Xtra\\Module\\ModuleSharedMethods' => __DIR__ . '/../..' . '/src/Module/ModuleSharedMethods.php',
+        'TheGe\\Xtra\\PrestaShop\\Module\\ModuleSharedMethods' => __DIR__ . '/../..' . '/src/Module/ModuleSharedMethods.php',
     );
 
     public static function getInitializer(ClassLoader $loader)

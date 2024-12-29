@@ -14,7 +14,7 @@
   },
   "autoload": {
     "psr-4": {
-      "TheGe\\PrestaShop\\Xtra\\": "src/"
+      "TheGe\\Xtra\\PrestaShop\\": "src/"
     }
   },
   "require-dev": {
@@ -22,8 +22,7 @@
   },
   "autoload-dev": {
     "psr-4": {
-      "TheGe\\PrestaShop\\XtraTest\\": "tests/src/",
-      "PrestaShop\\PrestaShop\\Adapter\\": "tests/mocks/src/Adapter/"
+      "TheGe\\XtraTest\\PrestaShop\\": "tests/src/"
     },
     "classmap": [
       "tests/mocks/classes/"

@@ -11,12 +11,12 @@
  * @license   https://www.apache.org/licenses/LICENSE-2.0 Apache License version 2.0
  */
 
-namespace TheGe\PrestaShop\XtraTest\Module;
+namespace TheGe\XtraTest\PrestaShop\Module;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
 use Context;
-use TheGe\PrestaShop\Xtra\Module\ModuleSharedMethods;
+use TheGe\Xtra\PrestaShop\Module\ModuleSharedMethods;
 
 
 abstract class ModuleSharedMethodsTest
