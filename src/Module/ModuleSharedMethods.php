@@ -47,20 +47,6 @@ trait ModuleSharedMethods
         return strtolower(str_replace('Controller', '', $controller_class));
     }
 
-    private function getModuleService(string $name): object
-    {
-        return $this
-            ->getContainer()
-            ->get("{$this->name}.{$name}");
-    }
-
-    private function getModuleParameter(string $name): mixed
-    {
-        return $this
-            ->getContainer()
-            ->getParameter("{$this->name}.{$name}");
-    }
-
     /**
      * Adds a CSS or JavaScript file
      * https://devdocs.prestashop-project.org/8/modules/creation/displaying-content-in-front-office/
