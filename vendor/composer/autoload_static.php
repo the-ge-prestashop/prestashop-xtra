@@ -6,10 +6,15 @@ namespace Composer\Autoload;
 
 class ComposerStaticInit77a1b81cd4eec355627d10283c6ae37d
 {
+    public static $files = array (
+        '9b38cf48e83f5d8f60375221cd213eee' => __DIR__ . '/..' . '/phpstan/phpstan/bootstrap.php',
+    );
+
     public static $prefixLengthsPsr4 = array (
         'T' => 
         array (
             'TheGe\\Xtra\\PrestaShop\\' => 22,
+            'TheGe\\Test\\Test\\Xtra\\PrestaShop\\' => 32,
         ),
     );
 
@@ -18,10 +23,23 @@ class ComposerStaticInit77a1b81cd4eec355627d10283c6ae37d
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),
+        'TheGe\\Test\\Test\\Xtra\\PrestaShop\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/tests/src',
+        ),
     );
 
     public static $classMap = array (
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'Context' => __DIR__ . '/../..' . '/tests/test-doubles/classes/Context.php',
+        'Controller' => __DIR__ . '/../..' . '/tests/test-doubles/classes/Controller.php',
+        'Language' => __DIR__ . '/../..' . '/tests/test-doubles/classes/Language.php',
+        'PrestaShop\\PrestaShop\\Adapter\\SymfonyContainer' => __DIR__ . '/../..' . '/tests/test-doubles/src/Adapter/SymfonyContainer.php',
+        'PrestaShop\\PrestaShop\\Core\\Localization\\Locale' => __DIR__ . '/../..' . '/tests/test-doubles/src/Core/Localization/Locale.php',
+        'PrestaShop\\PrestaShop\\Core\\Localization\\Locale\\Repository' => __DIR__ . '/../..' . '/tests/test-doubles/src/Core/Localization/Locale/Locale.php',
+        'Service' => __DIR__ . '/../..' . '/tests/test-doubles/classes/Service.php',
+        'Smarty' => __DIR__ . '/../..' . '/tests/test-doubles/Smarty.php',
+        'TheGe\\Test\\Test\\Xtra\\PrestaShop\\Module\\ModuleSharedMethodsTest' => __DIR__ . '/../..' . '/tests/src/Module/ModuleSharedMethodsTest.php',
         'TheGe\\Xtra\\PrestaShop\\Module\\Exception\\InvalidModuleAssetException' => __DIR__ . '/../..' . '/src/Module/Exception/InvalidModuleAssetException.php',
         'TheGe\\Xtra\\PrestaShop\\Module\\ModuleSharedMethods' => __DIR__ . '/../..' . '/src/Module/ModuleSharedMethods.php',
     );

@@ -7,6 +7,15 @@ $baseDir = dirname($vendorDir);
 
 return array(
     'Composer\\InstalledVersions' => $vendorDir . '/composer/InstalledVersions.php',
+    'Context' => $baseDir . '/tests/test-doubles/classes/Context.php',
+    'Controller' => $baseDir . '/tests/test-doubles/classes/Controller.php',
+    'Language' => $baseDir . '/tests/test-doubles/classes/Language.php',
+    'PrestaShop\\PrestaShop\\Adapter\\SymfonyContainer' => $baseDir . '/tests/test-doubles/src/Adapter/SymfonyContainer.php',
+    'PrestaShop\\PrestaShop\\Core\\Localization\\Locale' => $baseDir . '/tests/test-doubles/src/Core/Localization/Locale.php',
+    'PrestaShop\\PrestaShop\\Core\\Localization\\Locale\\Repository' => $baseDir . '/tests/test-doubles/src/Core/Localization/Locale/Locale.php',
+    'Service' => $baseDir . '/tests/test-doubles/classes/Service.php',
+    'Smarty' => $baseDir . '/tests/test-doubles/Smarty.php',
+    'TheGe\\Test\\Test\\Xtra\\PrestaShop\\Module\\ModuleSharedMethodsTest' => $baseDir . '/tests/src/Module/ModuleSharedMethodsTest.php',
     'TheGe\\Xtra\\PrestaShop\\Module\\Exception\\InvalidModuleAssetException' => $baseDir . '/src/Module/Exception/InvalidModuleAssetException.php',
     'TheGe\\Xtra\\PrestaShop\\Module\\ModuleSharedMethods' => $baseDir . '/src/Module/ModuleSharedMethods.php',
 );

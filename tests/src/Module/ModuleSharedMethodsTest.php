@@ -15,16 +15,17 @@ namespace TheGe\Test\Test\Xtra\PrestaShop\Module;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-use TheGe\Test\TestDoubles\Xtra\PrestaShop\ContextDummy;
-use TheGe\Test\TestDoubles\Xtra\PrestaShop\SymfonyContainerStub;
+use TheGe\Test\TestDoubles\Xtra\PrestaShop\Context;
 use TheGe\Xtra\PrestaShop\Module\ModuleSharedMethods;
+
+use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
 
 
 abstract class ModuleSharedMethodsTest
 {
     use ModuleSharedMethods;
 
-    public ContextDummy $context;
+    public \Context $context;
 
     public string $name = 'modulesharedmethodstest';
 
@@ -42,9 +43,9 @@ abstract class ModuleSharedMethodsTest
         return 'modules/this_module';
     }
 
-    public function getContainer(): SymfonyContainerStub
+    public function getContainer(): SymfonyContainer
     {
-        return new SymfonyContainerStub();
+        return SymfonyContainer::getInstance();
     }
 
     public function display(string $self_path, string $template): string

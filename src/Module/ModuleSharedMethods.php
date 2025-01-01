@@ -13,6 +13,7 @@
 
 namespace TheGe\Xtra\PrestaShop\Module;
 
+use PrestaShop\PrestaShop\Core\Localization\Locale;
 use TheGe\Xtra\PrestaShop\Module\Exception\InvalidModuleAssetException;
 
 
@@ -121,5 +122,14 @@ trait ModuleSharedMethods
         $suffix  = $this->trans('Please, ask your developer to consult the logs or contact us through the Addons website.', [], "Modules.{$this->name}.Admin");
 
         return "{$message} {$suffix}";
+    }
+
+    private function getLocale(): Locale
+    {
+        return $this->context->getCurrentLocale()
+            ?? $this
+                ->getContainer()
+                ->get('prestashop.core.localization.locale.repository')
+                ->getLocale($this->context->language?->getLocale() ?? '');
     }
 }
