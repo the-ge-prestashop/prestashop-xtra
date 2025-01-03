@@ -3,7 +3,7 @@
 /**
  * [TODO] add description
  *
- * File name: Smarty.php
+ * File name: Smarty_Internal_TemplateBase.php
  * Created:   2024-12-27 13:55:43
  * @author    Gabriel Tenita <dev2023@tenita.eu>
  * @link      https://github.com/the-ge/
@@ -12,7 +12,7 @@
  */
 
 
-class Smarty
+class Smarty_Internal_TemplateBase
 {
     /** @param array<string,mixed> $templateVars */
     public function assign(array $templateVars): void

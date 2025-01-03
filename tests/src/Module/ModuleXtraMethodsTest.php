@@ -3,11 +3,11 @@
 /**
  * [TODO] add description
  *
- * File name: AbstractPrestashopModule.php
- * Created:   2024-12-26 01:47:07
+ * File name: ModuleSharedMethodsTest.php
+ * Created:   2025-01-03 11:04:18
  * @author    Gabriel Tenita <dev2023@tenita.eu>
  * @link      https://github.com/the-ge/
- * @copyright Copyright (c) 2024-present Gabriel Tenita
+ * @copyright Copyright (c) 2025-present Gabriel Tenita
  * @license   https://www.apache.org/licenses/LICENSE-2.0 Apache License version 2.0
  */
 
@@ -15,19 +15,17 @@ namespace TheGe\Test\Test\Xtra\PrestaShop\Module;
 
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-use TheGe\Test\TestDoubles\Xtra\PrestaShop\Context;
-use TheGe\Xtra\PrestaShop\Module\ModuleSharedMethods;
-
 use PrestaShop\PrestaShop\Adapter\SymfonyContainer;
+use TheGe\Xtra\PrestaShop\Module\ModuleXtraMethods;
 
 
-abstract class ModuleSharedMethodsTest
+abstract class ModuleXtraMethodsTest
 {
-    use ModuleSharedMethods;
+    use ModuleXtraMethods;
 
     public \Context $context;
 
-    public string $name = 'modulesharedmethodstest';
+    public string $name = 'moduleXtramethodstest';
 
     private string $moduleMainFile = __FILE__;
 

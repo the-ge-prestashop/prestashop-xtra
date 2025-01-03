@@ -3,22 +3,53 @@
 /**
  * Base trait containing helpers used by hook traits
  *
- * File name: ModuleSharedMethods.php
- * Created:   2024-09-02 07:24
- * @author    Gabriel Tenita <the.ge.1447624801@tenita.eu>
+ * File name: ModuleXtraMethods.php
+ * Created:   2025-01-03 10:29:21
+ * @author    Gabriel Tenita <dev2023@tenita.eu>
  * @link      https://github.com/the-ge/
- * @copyright Copyright (c) 2024-present Gabriel Tenita
+ * @copyright Copyright (c) 2025-present Gabriel Tenita
  * @license   https://www.apache.org/licenses/LICENSE-2.0 Apache License version 2.0
  */
 
 namespace TheGe\Xtra\PrestaShop\Module;
 
+use Context;
+use Controller;
 use PrestaShop\PrestaShop\Core\Localization\Locale;
 use TheGe\Xtra\PrestaShop\Module\Exception\InvalidModuleAssetException;
 
 
-trait ModuleSharedMethods
+trait ModuleXtraMethods
 {
+    /** @var Context */
+    protected $context;
+
+    /** @var \Smarty_Data|\Smarty_Internal_TemplateBase */
+    protected $smarty;
+
+    private ?Controller $activeController;
+
+    private Locale $activeLocale;
+
+    private function init(): void
+    {
+        // The ternary \Module::__construct() is using will fail for null
+        $this->context ??= Context::getContext();
+    }
+
+    private function getActiveController(): ?Controller
+    {
+        return $this->activeController ??= $this->context->controller;
+    }
+
+    private function getActiveLocale(): Locale
+    {
+        return $this->activeLocale = $this->context->getCurrentLocale()
+            ?? $this
+                ->getContainer()
+                ->get('prestashop.core.localization.locale.repository')
+                ->getLocale($this->context->language?->getLocale());
+    }
 
     /**
      * Get the hook traits list by filtering the module traits array by the
@@ -42,7 +73,7 @@ trait ModuleSharedMethods
 
     private function getControllerKey(?object $controller = null): string
     {
-        $controller ??= $this->context->controller;
+        $controller ??= $this->activeController;
         $controller_class = $controller === null ? '' : $controller::class;
 
         return strtolower(str_replace('Controller', '', $controller_class));
@@ -62,9 +93,8 @@ trait ModuleSharedMethods
         $id  = "{$this->name}-$filename";
         // Asset URI e.g. '/shop/modules/mymodule/views/css/admin/somefile.css'
         $path = fn(bool $is_modern): string => ($is_modern ? "modules/{$this->name}" : $this->getPathUri()) . "/views/{$extension}/{$uri}";
-        $controller = $this->context->controller;
 
-        if ($controller === null) {
+        if ($this->activeController === null) {
             return;
         }
 
@@ -72,7 +102,7 @@ trait ModuleSharedMethods
          * @param   array $method   [0 => legacy method name, 1 => modern method name]
          * @return  array           [0 => method name, 1 => false if legacy, true if modern] 
          */
-        $findMethod = fn(array $method): array => [$method[(int) ($is_modern = method_exists($controller, $method[1]))], $is_modern];
+        $findMethod = fn(array $method): array => [$method[(int) ($is_modern = method_exists($this->activeController, $method[1]))], $is_modern];
         switch ($extension) {
             case 'css':
                 [$method, $is_modern] = $findMethod(['addCSS', 'registerStylesheet']);
@@ -86,7 +116,7 @@ trait ModuleSharedMethods
                 throw new InvalidModuleAssetException("Invalid extension for asset '{$uri}' of module '{$this->name}'");
         };
 
-        $controller->$method(...$args);
+        $this->activeController->$method(...$args);
     }
 
     /**
@@ -101,13 +131,11 @@ trait ModuleSharedMethods
      */
     private function renderTemplate(string $template, array $template_vars): string // @phpstan-ignore method.unused
     {
-        $smarty = $this->context->smarty;
-
-        if ($smarty === null) {
+        if ($this->smarty === null) {
             return '';
         }
 
-        $smarty->assign($template_vars);
+        $this->smarty->assign($template_vars);
 
         return $this->display($this->moduleMainFile, $template);
     }
@@ -122,14 +150,5 @@ trait ModuleSharedMethods
         $suffix  = $this->trans('Please, ask your developer to consult the logs or contact us through the Addons website.', [], "Modules.{$this->name}.Admin");
 
         return "{$message} {$suffix}";
-    }
-
-    private function getLocale(): Locale
-    {
-        return $this->context->getCurrentLocale()
-            ?? $this
-                ->getContainer()
-                ->get('prestashop.core.localization.locale.repository')
-                ->getLocale($this->context->language?->getLocale() ?? '');
     }
 }

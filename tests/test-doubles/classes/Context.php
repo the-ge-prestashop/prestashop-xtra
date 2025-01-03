@@ -20,7 +20,12 @@ class Context
 
     public ?Language $language;
 
-    public ?Smarty $smarty;
+    public ?Smarty_Data $smarty;
+
+    public static function getContext(): self
+    {
+        return new self();
+    }
 
     public function getCurrentLocale(): ?Locale
     {

@@ -20,7 +20,7 @@ class Service
     {
     }
 
-    public function getLocale(string $locale_iso): Locale
+    public function getLocale(?string $locale_iso): Locale
     {
         return new Locale();
     }
